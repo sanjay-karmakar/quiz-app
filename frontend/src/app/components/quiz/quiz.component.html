@@ -1,0 +1,22 @@
+<form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <div class="pb-3" *ngFor="let question of allQuestions; let i = index">
+            <label><strong>{{ i + 1 }}: {{ question?.question }}</strong></label>
+            <div class="form-check" *ngFor="let itm of question.options">
+                <input class="form-check-input" type="radio" [formControlName]="'question_' + question?.id" [value]="itm?.quiz_answr_id">
+                <label class="form-check-label" for="'question_' + question?.id">
+                    {{ itm?.option_title }}
+                </label>
+            </div>
+        </div>
+        <button *ngIf="!showSuccess" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+    <div *ngIf="showSuccess" class="alert alert-success mt-3">
+        Your quiz has been submitted successfully.
+    </div>
+    <div *ngIf="notAnswered" class="alert alert-warning mt-3">
+        No questions answered. Please select at least one answer.
+    </div>
+</form>
+

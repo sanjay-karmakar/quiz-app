@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow p-4" style="width: 500px;">
+        <h4 class="text-center mb-4">Login</h4>
+        <p style="text-align: center;">superadmin&#64;mailinator.com</p>
+        <p style="text-align: center;">user2&#64;mailinator.com / user5&#64;mailinator.com</p>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-2">
+            <div class="mb-3">
+                <input type="text" id="username" class="form-control" formControlName="username" placeholder="Enter your username" value="">
+                @if (isFormSubmitted && loginForm.controls['username'].errors?.['required']) {
+                    <span class="text-danger small">Username is required.</span>
+                }
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+
+            <div *ngIf="showError" class="alert alert-danger mt-3">
+                Invalid username. Please try again.
+            </div>
+        </form>
+    </div>
+</div>
